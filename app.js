@@ -1,8 +1,10 @@
-const newButton = document.querySelectorAll(".create-new");
+const newButton = document.querySelector(".create-new");
 const checkbox = document.querySelector("#custom-checkbox");
 const taskbar = document.querySelector(".task-bar");
 const task = document.querySelector("#text");
 
-newButton:addEventListener("click",()=>{
-    const newtask = task.cloneNode(true);
+newButton.addEventListener("click",()=>{
+    const newtaskbar = taskbar.cloneNode();
+        
+
 })
