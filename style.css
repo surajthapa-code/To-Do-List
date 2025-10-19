@@ -115,7 +115,7 @@ main {
 
 /* playful checkmark style */
 .list-container li::before {
-  content: '✨';
+  content: '🔲';
   margin-right: 10px;
   font-size: 18px;
   opacity: 0.7;
@@ -130,8 +130,4 @@ main {
 .list-container li.checked::before {
   content: '✅';
   opacity: 1;
-}
-
-.checked{
-    
-}
+}  
