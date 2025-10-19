@@ -1,4 +1,4 @@
-/* ===== Playful To-Do List Theme ===== */
+/* ===== Vibrant & Playful To-Do List Theme (Redesign) ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
@@ -9,11 +9,13 @@
 }
 
 body {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  height: 100vh;
+  /* New vibrant gradient */
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 }
 
 main {
@@ -25,41 +27,59 @@ main {
 
 .todo-app {
   background: #fff;
-  width: 90%;
-  max-width: 400px;
-  padding: 25px 30px;
+  width: 100%;
+  /* Increased max-width for better desktop view */
+  max-width: 540px; 
+  padding: 30px 40px;
   border-radius: 20px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  /* Softer, more modern shadow */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
-  animation: pop 0.5s ease;
+  animation: pop 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
+/* Updated pop animation with a "bounce" */
 @keyframes pop {
-  from {
-    transform: scale(0.8);
+  0% {
+    transform: scale(0.7);
     opacity: 0;
   }
-  to {
+  100% {
     transform: scale(1);
     opacity: 1;
   }
 }
 
 .todo-app h2 {
-  color: #ff6f61;
+  /* New accent color */
+  color: #667eea;
   font-weight: 700;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
+
+/* Optional: If you add an icon in your HTML like <h2>📝 My List</h2> */
+.todo-app h2::before {
+  content: '📝';
+  font-size: 28px;
+}
+
 
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffe5ec;
+  /* New light, cool background */
+  background: #f4f7fc;
   border-radius: 30px;
   padding-left: 20px;
   margin-bottom: 25px;
+  /* Added transition for responsive changes */
+  transition: all 0.3s ease;
 }
 
 .row input {
@@ -67,67 +87,209 @@ main {
   border: none;
   outline: none;
   background: transparent;
-  padding: 12px;
+  padding: 14px;
   font-size: 16px;
   color: #333;
 }
 
+.row input::placeholder {
+  color: #9a9a9a;
+}
+
 .row button {
-  background: #ff6f61;
+  /* New gradient button */
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border: none;
   outline: none;
-  padding: 12px 25px;
+  /* Adjusted padding */
+  padding: 16px 30px;
   border-radius: 30px;
   color: #fff;
   font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .row button:hover {
-  background: #ff4b2b;
+  /* Reversed gradient on hover */
+  background: linear-gradient(135deg, #764ba2, #667eea);
   transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 .list-container {
   list-style: none;
   text-align: left;
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 10px; /* For scrollbar spacing */
 }
 
+/* Custom scrollbar for webkit browsers */
+.list-container::-webkit-scrollbar {
+  width: 6px;
+}
+.list-container::-webkit-scrollbar-thumb {
+  background: #c1c8e4;
+  border-radius: 6px;
+}
+.list-container::-webkit-scrollbar-track {
+  background: #f4f7fc;
+  border-radius: 6px;
+}
+
+
 .list-container li {
-  background: #f9f1f0;
-  margin-bottom: 10px;
-  padding: 12px 15px;
+  /* Cleaner list item design */
+  background: #fcfdff;
+  border: 1px solid #eef2f7;
+  margin-bottom: 12px;
+  padding: 14px 18px;
   border-radius: 10px;
   font-size: 16px;
   color: #444;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
+  word-break: break-word; /* Handle long tasks */
+  position: relative; /* For the delete button */
 }
 
 .list-container li:hover {
-  background: #ffe0e0;
+  background: #f4f7fc;
   transform: translateX(5px);
+  border-color: #dbe4f3;
 }
 
-/* playful checkmark style */
+/* Kept the playful emoji checkmark */
 .list-container li::before {
   content: '🔲';
   margin-right: 10px;
-  font-size: 18px;
+  font-size: 20px;
   opacity: 0.7;
 }
 
 .list-container li.checked {
   text-decoration: line-through;
-  color: #aaa;
-  background: #ffdede;
+  color: #999;
+  background: #f1f5fb;
+  border-color: #e0e7f2;
 }
 
 .list-container li.checked::before {
   content: '✅';
   opacity: 1;
-}  
+}
+
+/* NEW: Style for a delete button (span)
+  Assuming your HTML is: <li>Task text <span class="delete">&times;</span></li>
+*/
+.list-container li .delete {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: #c0c0c0;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  /* Pushes checkmark logic to the left */
+  margin-left: auto; 
+  padding-left: 15px;
+}
+
+.list-container li .delete:hover {
+  background: #eef2f7;
+  color: #ff5959; /* Red on hover */
+}
+
+
+/* ================================== */
+/* === MOBILE RESPONSIVE DESIGN === */
+/* ================================== */
+
+/* Medium screens / Tablets */
+@media (max-width: 768px) {
+  .todo-app {
+    max-width: 90vw;
+    padding: 25px;
+  }
+
+  .todo-app h2 {
+    font-size: 24px;
+  }
+
+  .row button {
+    padding: 16px 20px;
+  }
+
+  .list-container {
+    max-height: 400px;
+  }
+}
+
+
+/* Small screens / Phones */
+@media (max-width: 480px) {
+  .todo-app {
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .todo-app h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .todo-app h2::before {
+    font-size: 24px;
+  }
+
+  /* Stack the input and button */
+  .row {
+    flex-direction: column;
+    background: transparent;
+    padding-left: 0;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+
+  .row input {
+    width: 100%;
+    background: #f4f7fc;
+    border-radius: 30px;
+    padding: 14px 20px;
+    text-align: center;
+  }
+
+  .row button {
+    width: 100%;
+    padding: 14px;
+  }
+  
+  .list-container {
+    padding-right: 5px; /* Smaller scrollbar gap */
+  }
+
+  .list-container li {
+    font-size: 15px;
+    padding: 12px 15px;
+  }
+
+  .list-container li::before {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+  
+  .list-container li .delete {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+  }
+}
